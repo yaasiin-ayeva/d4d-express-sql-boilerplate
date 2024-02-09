@@ -1,0 +1,1 @@
+export type UserOnlineStatus = 'online' | 'away' | 'offline';

@@ -1,6 +1,6 @@
-// import { list } from '@utils/enum.util';
+// import { list } from 'src/api/core/utils/enum.util';
 
-// import { AUDIO_MIME_TYPE, ARCHIVE_MIME_TYPE, DOCUMENT_MIME_TYPE, IMAGE_MIME_TYPE, VIDEO_MIME_TYPE } from '@enums';
+// import { AUDIO_MIME_TYPE, ARCHIVE_MIME_TYPE, DOCUMENT_MIME_TYPE, IMAGE_MIME_TYPE, VIDEO_MIME_TYPE } from 'src/api/core/types/enums';
 
 // /**
 //  * @description Shortcut all media types mime-types as pseudo enum

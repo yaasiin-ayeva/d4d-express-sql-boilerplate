@@ -1,49 +1,29 @@
-require('module-alias/register');
-
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import rateLimit from "express-rate-limit";
 
-import EnvConfig from "@config/environment.config";
-import { AppDataSource } from "@config/database.config";
-import morganConfig from "@config/morgan.config";
-import logger from "@config/logger.config";
+import EnvConfig from "../api/config/environment.config";
+import { AppDataSource } from "../api/config/database.config";
+import morganConfig from "../api/config/morgan.config";
+import logger from "../api/config/logger.config";
+import swaggerSpec from "../api/config/swagger.config";
 
-import { runSeeders } from "@seeders/index.seeder";
-import ErrorResponse from "@utils/errorResponse.util";
-import { scheduleCrons } from "@crons/index.cron";
-import { ENVIRONMENT } from "@enums";
-
-import apiRouter from "@router";
+import { runSeeders } from "../api/core/seeders/index.seeder";
+import { scheduleCrons } from "../api/core/crons/index.cron";
+import { ENVIRONMENT } from "../api/core/types/enums";
 
 import express = require("express");
 
-const cookieParser = require('cookie-parser');
+import swaggerUi = require('swagger-ui-express');
+import apiRouter from "./core/routes/index.route";
+
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-const cors = require('cors');
 
-const publicContent = require('@public-content');
+const publicContent = require('../../app.json');
 const PORT = EnvConfig.API_PORT;
 
 const app = express();
-
-const corsAllowedOrigins = [EnvConfig.AUTHORIZED];
-
-const corsOptions = {
-    origin: function (origin: any, callback: any) {
-        if (corsAllowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new ErrorResponse('Not allowed by CORS', 403));
-        }
-    },
-    optionsSuccessStatus: 200,
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Credentials'],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-}
 
 // Rate Limit
 const apiLimiter = rateLimit({
@@ -73,52 +53,52 @@ if (EnvConfig.env === ENVIRONMENT.production) {
     app.use(apiLimiter);
 }
 
-// Enable CORS for all requests in production
-if (EnvConfig.env === ENVIRONMENT.production) {
-    app.use(cors(corsOptions));
-    app.use(cors());
-    app.options('*', cors(corsOptions));
-}
-
-// cookie parser
-app.use(cookieParser());
+// Disable x-powered-by
+app.disable("x-powered-by");
 
 // Serve static files
 app.use(`/${EnvConfig.UPLOAD_PATH}`, express.static(EnvConfig.UPLOAD_PATH));
 
+// API Routes with CORS policy
 app.use('/api', apiRouter);
+
+// Documentation with Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
 
 app.get('/', (_, res) => {
     res.send(publicContent);
 });
 
-// Initialize Datasource
-AppDataSource.initialize().then(async () => {
-    logger.info('Datasource initialized successfully');
-    await runSeeders();
-}).catch((error => {
-    logger.error(`Datasource Error: ${error.message}`);
-}));
+// Error handler
+app.use((error: any, req: Request, res: Response) => {
+    let statusCode = error.statusCode || 500;
+    let errorMessage = statusCode === 500 ? 'Internal Server Error' : error.message;
+    let stack = isNaN(Number(error.statusCode)) ? error.stack : null;
 
-// Crons Runners
-scheduleCrons();
-
-app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-
-    if (isNaN(Number(error.statusCode))) {
-        var stack = error.stack;
-    }
-
-    logger.error(`Error ${error.statusCode}: ${error.message} ${stack ? 'Stack' + stack : ''}`, { url: req.url, method: req.method },);
-
-    const statusCode = error.statusCode || 500;
+    logger.error(`Error ${statusCode}: ${errorMessage} ${stack ? 'Stack' + stack : ''}`, { url: req.url, method: req.method });
 
     return res.status(statusCode).json({
         success: false,
-        error: statusCode === 500 ? 'Internal Server Error' : error.message
+        error: errorMessage,
+        payload: error.payload || null
     });
 });
 
-app.listen(PORT, () => {
-    logger.info(`${EnvConfig.API_NAME} has been successfully started on port ${PORT} in ${EnvConfig.env} mode`);
-});
+// Initialize Datasource
+AppDataSource.initialize().then(async () => {
+    logger.info('Datasource initialized successfully');
+
+    // Run default Seeders
+    await runSeeders();
+
+    // Schedule Crons
+    scheduleCrons();
+
+    // Listening to port
+    app.listen(PORT, () => {
+        logger.info(`${EnvConfig.API_NAME} has been successfully started on port ${PORT} in ${EnvConfig.env} mode`);
+    });
+
+}).catch((error => {
+    logger.error(`Datasource Error: ${error.message}`);
+}));

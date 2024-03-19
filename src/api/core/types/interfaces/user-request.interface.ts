@@ -1,5 +1,3 @@
-import { User } from '@models/user.model';
-import { IRequest, IMedia, IUserQueryString } from '@interfaces';
 /**
  * @description
  */

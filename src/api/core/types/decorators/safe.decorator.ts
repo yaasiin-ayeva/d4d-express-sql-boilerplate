@@ -1,6 +1,7 @@
-import { Controller } from '@classes';
-// import { Media } from '@models/media.model';
-// import { MediaService } from '@services/media.service';
+// import { Media } from 'src/api/core/models/media.model';
+// import { MediaService } from 'src/api/core/services/media.service';
+
+import { Controller } from "../classes";
 
 /**
  * @decorator Safe

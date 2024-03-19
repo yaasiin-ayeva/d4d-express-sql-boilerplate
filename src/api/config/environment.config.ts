@@ -4,6 +4,8 @@ const EnvConfig = {
 
     env: String(process.env.NODE_ENV),
 
+    APP_NAME: String(process.env.APP_NAME),
+
     API_NAME: String(process.env.API_NAME),
     API_PORT: Number(process.env.API_PORT),
     API_VERSION: String(process.env.API_VERSION),
@@ -16,9 +18,9 @@ const EnvConfig = {
     STANDARD_HEADERS: Number(process.env.STANDARD_HEADERS) === 1 ? true : false,
     LEGACY_HEADERS: Number(process.env.LEGACY_HEADERS) === 1 ? true : false,
 
-    STD_TTL:Number(process.env.STD_TTL),
-    CHECK_PERIOD:Number(process.env.CHECK_PERIOD),
-    MAX_KEYS:Number(process.env.MAX_KEYS),
+    STD_TTL: Number(process.env.STD_TTL),
+    CHECK_PERIOD: Number(process.env.CHECK_PERIOD),
+    MAX_KEYS: Number(process.env.MAX_KEYS),
 
     JWT_KEY: String(process.env.JWT_KEY),
     JWT_DEV_EXPIRE: String(process.env.JWT_DEV_EXPIRE),
@@ -42,6 +44,7 @@ const EnvConfig = {
     VERIFICATION_SID: String(process.env.VERIFICATION_SID),
     SENDGRID_API_KEY: String(process.env.SENDGRID_API_KEY),
     FROM_EMAIL: String(process.env.FROM_EMAIL),
+    ENABLE_EMAIL: Number(process.env.ENABLE_EMAIL) === 1 ? true : false,
 
     CLOUDINARY_CLOUD_NAME: String(process.env.CLOUDINARY_CLOUD_NAME),
     CLOUDINARY_API_KEY: String(process.env.CLOUDINARY_API_KEY),

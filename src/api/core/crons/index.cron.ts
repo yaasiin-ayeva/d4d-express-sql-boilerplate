@@ -1,4 +1,4 @@
-import logger from "@config/logger.config";
+import logger from "../../config/logger.config";
 
 export function scheduleCrons() {
 

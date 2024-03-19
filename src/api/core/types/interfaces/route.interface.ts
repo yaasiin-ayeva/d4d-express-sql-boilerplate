@@ -1,4 +1,4 @@
-import { Router } from '@classes';
+import { Router } from "express";
 
 /**
  * Define route definition members

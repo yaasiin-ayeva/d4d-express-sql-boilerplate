@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import multer = require('multer');
-import EnvConfig from "@config/environment.config";
-import logger from "@config/logger.config";
-import ErrorResponse from "@utils/errorResponse.util";
-import { clean_dir } from "@utils/FileHandling.util";
+import EnvConfig from "../../config/environment.config";
+import logger from "../../config/logger.config";
+import { clean_dir } from "../utils/FileHandling.util";
+import ErrorResponse from "../utils/errorResponse.util";
+
 
 const documentsFolder = EnvConfig.UPLOAD_PATH;
 const uploadKey = EnvConfig.UPLOAD_KEY;

@@ -1,6 +1,6 @@
 import winston = require("winston");
 
-import EnvConfig from "@config/environment.config";
+import EnvConfig from "./environment.config";
 import { ENVIRONMENT } from "../core/types/enums";
 
 const enumerateErrorFormat = winston.format((info) => {
@@ -16,7 +16,7 @@ const logger = winston.createLogger({
         enumerateErrorFormat(),
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         // EnvConfig.env === ENVIRONMENT.development ? winston.format.colorize({ all: true }) : winston.format.uncolorize(),
-        winston.format.uncolorize(),
+        winston.format.colorize(),
         winston.format.splat(),
         winston.format.printf(({ level, message, timestamp }) => `[${timestamp}] ${level}: ${message}`)
     ),

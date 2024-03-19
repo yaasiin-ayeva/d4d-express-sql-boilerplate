@@ -1,8 +1,8 @@
 import { ValidationErrorItem } from 'joi';
 import * as HTTP_STATUS from 'http-status';
+import { IHTTPError, IError } from '../interfaces';
+import { TypeplateError } from './typeplate.error';
 
-import { IError, IHTTPError } from '@interfaces';
-import { TypeplateError } from '@errors';
 
 /**
  * Type upload error

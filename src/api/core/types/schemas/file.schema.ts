@@ -1,9 +1,9 @@
 // import * as Joi from 'joi';
 // import { AnySchema } from 'joi';
 
-// import { MIME_TYPE_LIST } from '@enums';
-// import { filename, path, mimetype } from '@schemas';
-// import { Fieldname } from '@types';
+// import { MIME_TYPE_LIST } from 'src/api/core/types/enums';
+// import { filename, path, mimetype } from 'src/api/core/types/schemas';
+// import { Fieldname } from 'src/api/core/types/types';
 
 // const file = (field_name: Fieldname): AnySchema => {
 //   return Joi.object().keys({

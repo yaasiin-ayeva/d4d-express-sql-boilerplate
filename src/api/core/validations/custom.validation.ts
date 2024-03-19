@@ -8,6 +8,13 @@ const password = (value: any, helpers: any) => {
     return value;
 };
 
+// const confirmPassword = (value: any, helpers: any) => {
+//     if (value !== this.password) {
+//         return helpers.message('passwords should match');
+//     }
+//     return value;
+// };
+
 export {
     password
 }

@@ -1,4 +1,4 @@
-import { IStorage } from '@interfaces';
+import { IStorage } from "./storage.interface";
 
 /**
  * @description

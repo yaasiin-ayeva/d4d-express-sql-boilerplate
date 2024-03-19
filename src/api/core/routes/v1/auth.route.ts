@@ -1,11 +1,12 @@
 import { Router } from "express";
-import AuthController from "@controllers/auth.controller";
+import AuthController from "../../controllers/auth/auth.controller";
 
 const controller = new AuthController();
 const authRoutes = Router();
 
-authRoutes.post('/login', controller.loginHandler);
-authRoutes.get('/forgot-password', controller.forgotPasswordHandler);
-authRoutes.get('/logout', controller.logoutHandler);
+authRoutes.post('/sign-in', controller.signinHandler);
+authRoutes.post('/sign-up', controller.signupHandler);
+authRoutes.get('/sign-out', controller.signoutHandler);
+authRoutes.post('/forgot-password', controller.forgotPasswordHandler);
 
 export default authRoutes;

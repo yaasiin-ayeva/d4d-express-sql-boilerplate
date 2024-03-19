@@ -1,5 +1,5 @@
-// import { User } from '@models/user.entity';
-// import { IMedia, IRequest } from '@interfaces';
+// import { User } from 'src/api/core/models/user.entity';
+// import { IMedia, IRequest } from 'src/api/core/types/interfaces';
 
 // /**
 //  * @description

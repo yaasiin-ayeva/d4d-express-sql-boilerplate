@@ -17,6 +17,8 @@ import { IUpload } from './upload.interface';
 import { IUploadMulterOptions } from './upload-multer-options.interface';
 import { IUploadOptions } from './upload-options.interface';
 import { IUserQueryString } from './user-query-string.interface';
+import { ICoordinates } from './coordinates.interface';
+import { ITag } from './tag.interface';
 // import { IUserRequest } from './user-request.interface';
 
 export {
@@ -39,5 +41,7 @@ export {
   IUploadMulterOptions,
   IUploadOptions,
   IUserQueryString,
+  ICoordinates,
+  ITag
   // IUserRequest
 }

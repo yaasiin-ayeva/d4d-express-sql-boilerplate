@@ -1,4 +1,4 @@
-import EnvConfig from "@config/environment.config";
+import EnvConfig from "./environment.config";
 
 const CacheConfig = {
     stdTTL: EnvConfig.STD_TTL,

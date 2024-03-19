@@ -3,7 +3,7 @@ import { BaseEntity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn 
 export default abstract class BaseModel extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    public id: string;
+    public id: number;
 
     @CreateDateColumn()
     public created_at?: Date;

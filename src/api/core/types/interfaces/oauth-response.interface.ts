@@ -1,4 +1,4 @@
-import { OAuthProvider } from '@types';
+import { OAuthProvider } from "../types";
 
 export interface IOauthResponse {
 

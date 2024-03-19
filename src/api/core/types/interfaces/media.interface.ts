@@ -1,6 +1,6 @@
-import { User } from '@models/user.model';
 import { DeepPartial } from 'typeorm';
-import { MimeType } from '@types';
+import { User } from '../../models/hr/user.model';
+import { MimeType } from '../types';
 
 export interface IMedia {
   path: string;

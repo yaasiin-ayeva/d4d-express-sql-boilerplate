@@ -1,5 +1,5 @@
-import { IQueryString } from '@interfaces';
-import { Status } from '@types';
+import { Status } from "../types";
+import { IQueryString } from "./query-string.interface";
 
 export interface IUserQueryString extends IQueryString {
   status?: Status;

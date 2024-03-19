@@ -1,4 +1,5 @@
-import { DatabaseEngine, MomentUnit } from '@types';
+import { DatabaseEngine } from "./database-engine.type";
+import { MomentUnit } from "./moment-unit.type";
 
 type EnvAccessToken = { DURATION: number, SECRET: string, UNIT: MomentUnit };
 type EnvOauth = { KEY: string, IS_ACTIVE: boolean, ID: string, SECRET: string, CALLBACK_URL: string };

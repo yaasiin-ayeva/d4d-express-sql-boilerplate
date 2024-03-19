@@ -1,6 +1,6 @@
 const morgan = require('morgan');
-import logger from '@config/logger.config';
-import EnvConfig from "@config/environment.config";
+import logger from './logger.config';
+import EnvConfig from "./environment.config";
 
 const format = EnvConfig.LOGS_TOKEN;
 

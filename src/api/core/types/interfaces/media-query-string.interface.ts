@@ -1,5 +1,5 @@
-import { MediaType } from '@types';
-import { IQueryString } from '@interfaces';
+import { MediaType } from "express";
+import { IQueryString } from "./query-string.interface";
 
 export interface IMediaQueryString extends IQueryString {
   path?: string;

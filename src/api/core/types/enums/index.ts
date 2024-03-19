@@ -8,7 +8,7 @@ import { FIELDNAME } from './fieldname.enum';
 import { IMAGE_MIME_TYPE } from './image-mime-type.enum';
 import { MEDIA_TYPE } from './media-type.enum';
 import { ROLE } from './role.enum';
-import { STATUS } from './status.enum';
+import { KYC_STATUS } from './kyc-status.enum';
 import { VIDEO_MIME_TYPE } from './video-mime-type.enum';
 import { GENDER } from './gender.enum';
 import { USER_ONLINE_STATUS } from './user-online-status.enum';
@@ -29,7 +29,7 @@ export {
   // MIME_TYPE,
   // MIME_TYPE_LIST,
   ROLE,
-  STATUS,
+  KYC_STATUS as STATUS,
   VIDEO_MIME_TYPE,
   GENDER,
   USER_ONLINE_STATUS,
